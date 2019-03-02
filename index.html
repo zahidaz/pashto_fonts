@@ -1,1 +1,342 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pashto Fonts</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./fonts_names.js"></script>
+    <style>
+        * {
+            transition: color 50ms ease-in;
+        }
+
+        html,
+        body,
+        #app {
+            padding: 0px;
+            margin: 0px;
+            min-height: 100%;
+            color: #333333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            padding: 20px;
+            padding-top: 0px;
+        }
+
+        .themes,
+        header, iframe {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .theme {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 3px solid #72e0d1;
+            cursor: pointer;
+            background-color: #243239;
+        }
+
+        #font_size_px {
+            margin-left: 5px;
+            color: #aa7ee1;
+            font-family: monospace;
+        }
+
+        header {
+            height: 50px;
+            background-color: #333333;
+            color: silver;
+            justify-content: space-between;
+        }
+
+        .ps {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid gainsboro;
+            border-radius: 20px;
+        }
+
+        .ps.poem {
+            flex-direction: column;
+        }
+
+        .ps>span {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .font_size_range {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .font_chooser {
+            display: flex;
+            font-size: 12px;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            overflow: scroll;
+            padding-bottom: 18px;
+            margin-top: 30px;
+        }
+
+        .font_chooser .font_type {
+            margin-right: 10px;
+            padding: 10px;
+            text-transform: capitalize;
+            cursor: pointer;
+            border-radius: 5px;
+            background: linear-gradient(to right, #fce4ed, #ffe8cc);
+            color: #2e2f3e;
+            border: 2px transparent solid;
+        }
+
+        .font_chooser .font_type:hover,
+        #btn_download:hover {
+            opacity: 0.7;
+        }
+
+        .font_chooser .font_type.selected {
+            border: 2px turquoise solid;
+        }
+
+
+        #btn_download {
+            display: block;
+            margin-top: 30px;
+            border: none;
+            background-image: linear-gradient(to top left, #2196f3, #673ab7);
+            color: #fff;
+            font-weight: 700;
+            border: 0;
+            border-radius: 10px;
+            white-space: nowrap;
+            padding: 1rem 1.5rem;
+            line-height: 1.4;
+            user-select: none;
+            margin-right: auto;
+            margin-left: auto;
+            width: fit-content;
+        }
+
+        /* Theme */
+
+        /* .ps{
+            color:white;
+            background-color: black;
+        } */
+
+        footer {
+            margin-top: 70px;
+            padding: 10px;
+            height: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 1px solid silver;
+            background-color: #001629;
+            justify-content: space-around;
+        }
+
+        footer .section {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 10px;
+
+        }
+
+        .section .header {
+            color: #ff8a00;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        .section .item {
+            font-weight: lighter;
+            color: #72e0d1;
+        }
+
+        .dark .ps {
+            background-color: #243239;
+            color: #fff;
+        }
+
+        .dark .theme {
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" :class={dark:isDarkTheme}>
+        <v-style>
+            @font-face {
+            font-family: {{font_family}};
+            src: url("./all_fonts/{{font_name}}") format("truetype");
+            }
+            .ps {
+            font-family: {{font_family}};
+            font-size: {{font_size}}px;
+            }
+        </v-style>
+        <header>
+
+            <span class="font_size_range">
+                <input type="range" name="font size" min="14" max="58" v-model="font_size"> <span
+                    id="font_size_px">{{font_size}}px</span>
+            </span>
+            <div class="themes">
+                <span class="theme" @click="isDarkTheme = !isDarkTheme"></span>
+            </div>
+
+            <iframe src="https://ghbtns.com/github-btn.html?user=omar-amar&repo=pashto_fonts&type=star&count=true"
+                frameborder="0" scrolling="0" width="90px" height="22px"></iframe>
+
+
+        </header>
+
+        <div class="font_chooser">
+            <span :class="{selected : (font_name == font)}" class="font_type" v-for="font in all_fonts"
+                @click="selectFont(font)">
+                {{ (font.replace(".ttf", "")).replace("-", " ") }}
+            </span>
+        </div>
+        <div class="ps poem" dir="rtl">
+            <span>دا نادره عقيده لــــــــــــــکه زمـــــا ده</span>
+            <span>لا عجب که بل پيدا هسې افغان شي</span>
+        </div>
+        <div class="ps letters" dir="rtl">
+            <span>ا</span>
+            <span>آ</span>
+            <span>ب</span>
+            <span>پ</span>
+            <span>ت</span>
+            <span>ټ</span>
+            <span>ث</span>
+            <span>ج</span>
+            <span>چ</span>
+            <span>ح</span>
+            <span>خ</span>
+            <span>څ</span>
+            <span>ځ</span>
+            <span>د</span>
+            <span>ډ</span>
+            <span>ذ</span>
+            <span>ر</span>
+            <span>ړ</span>
+            <span>ز</span>
+            <span>ژ</span>
+            <span>ږ</span>
+            <span>س</span>
+            <span>ش</span>
+            <span>ښ</span>
+            <span>ص</span>
+            <span>ض</span>
+            <span>ط</span>
+            <span>ظ</span>
+            <span>ع</span>
+            <span>غ</span>
+            <span>ف</span>
+            <span>ق</span>
+            <span>ک</span>
+            <span>ګ</span>
+            <span>ل</span>
+            <span>م</span>
+            <span>ن</span>
+            <span>ڼ</span>
+            <span>ه</span>
+            <span>ۀ</span>
+            <span>ي</span>
+            <span>ې</span>
+            <span>ی</span>
+            <span>ئ</span>
+        </div>
+
+        <div class="ps numbers">
+            <span>۰</span>
+            <span>۱</span>
+            <span>۲</span>
+            <span>۳</span>
+            <span>۴</span>
+            <span>۵</span>
+            <span>۶</span>
+            <span>۷</span>
+            <span>۸</span>
+            <span>۹</span>
+        </div>
+        <div class="ps numbers">
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+        </div>
+        <a id="btn_download" :href="'./all_fonts/' + font_name" target="_blank">
+            <span>Download</span><span> / </span><span>ښکته</span>
+        </a>
+    </div>
+
+    <footer>
+        <div class="section">
+            <span class="header">
+                More Products
+            </span>
+            <a href="https://omar-amar.github.io/pashto-type-faster/" target="_blank" class="item">Pashto Type
+                Faster</a>
+        </div>
+        <div class="section">
+            <span class="header">
+                About
+            </span>
+            <a href="" class="item">ahmad.zubair.amar@gmail.com</a>
+        </div>
+    </footer>
+
+    <script>
+        Vue.component('v-style', {
+            render: function (createElement) {
+                return createElement('style', this.$slots.default)
+            }
+        });
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                font_size: 22,
+                font_family: "custom_font",
+                font_name: "Scheherazade-Regular.ttf",
+                all_fonts,//imported in fonts_names.js
+                isDarkTheme: false
+            },
+            methods: {
+                selectFont(font) {
+                    vm.font_name = font;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
