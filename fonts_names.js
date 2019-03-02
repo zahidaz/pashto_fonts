@@ -2,6 +2,10 @@
 const all_fonts = [
     "Scheherazade-Regular.ttf",
     "Scheherazade-Bold.ttf",
+    "MarkaziText-Regular.ttf",
+    "MarkaziText-Bold.ttf",
+    "MarkaziText-Medium.ttf",
+    "MarkaziText-SemiBold.ttf",
     "Bahij ASVCodar-Regular.ttf",
     "Bahij ASVCodar-Bold.ttf",
     "Bahij Aban-Bold.ttf",
