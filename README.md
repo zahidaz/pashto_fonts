@@ -1,4 +1,4 @@
-# Pashto fonts | پښتو لیکبڼی
+# Pashto fonts | پښتو لیکبڼی | پشتو فونت
 A Collection of pashto/pashtu fonts </br>
 View <a href="https://omar-amar.github.io/pashto_fonts/" target="_blank">Pashto fonts</a></br>
 
