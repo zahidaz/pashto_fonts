@@ -1,2 +1,2 @@
-# pashto_fonts
-Collection of Pashto fonts
+# Pashto fonts
+Collection of Pashto/Pashtu fonts
